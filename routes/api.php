@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AdminProductController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
@@ -18,6 +19,9 @@ Route::prefix('v1')->group(function () {
 
     //Product
     Route::apiResource('/products', ProductController::class)->only(['index', 'show']);
+
+    //Admin
+    Route::apiResource('/admin/products', AdminProductController::class)->middleware('admin');
 });
 
 
