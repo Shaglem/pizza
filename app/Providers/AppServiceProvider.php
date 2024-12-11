@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\BasketItem;
+use App\Policies\BasketItemPolicy;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Auth::shouldUse('api');
+//        Gate::policy(BasketItem::class, BasketItemPolicy::class);
     }
 }

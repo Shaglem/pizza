@@ -10,7 +10,7 @@ class LoginUserAction
 {
     public function handle(array $data): ?Authenticatable
     {
-        if (!Auth::attempt($data)) {
+        if (!Auth::guard('web')->attempt($data)) {
             return null;
         }
 

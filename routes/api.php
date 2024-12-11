@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AdminOrderController;
 use App\Http\Controllers\Api\V1\AdminProductController;
+use App\Http\Controllers\Api\V1\BasketItemController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
@@ -17,11 +19,16 @@ Route::prefix('v1')->group(function () {
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/login', [UserController::class, 'login']);
 
+    //BasketItem
+    Route::apiResource('/basket-items', BasketItemController::class)->only(['index', 'store', 'destroy'])->middleware('auth:sanctum');
+
     //Product
     Route::apiResource('/products', ProductController::class)->only(['index', 'show']);
 
     //Admin
     Route::apiResource('/admin/products', AdminProductController::class)->middleware('admin');
+    Route::apiResource('/admin/orders', AdminOrderController::class)->only(['index'])->middleware('admin');
+    Route::patch('admin/order-change-status/{order}', [AdminOrderController::class, 'changeStatus']);
 });
 
 

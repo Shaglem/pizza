@@ -8,10 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\IndexProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductController extends Controller
 {
-    public function index(IndexProductAction $action, IndexProductRequest $request)
+    public function index(IndexProductAction $action, IndexProductRequest $request): AnonymousResourceCollection
     {
         return ProductResource::collection($action->handle($request));
     }
