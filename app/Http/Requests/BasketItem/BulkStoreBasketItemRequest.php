@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\BasketItem;
 
-use App\Rules\MaxQuantityOfProductInBasketIsNotExceedInArrayOfItemsRule;
+use App\Rules\MaxQuantityOfProductsInBasketIsNotExceedRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BulkStoreBasketItemRequest extends FormRequest
@@ -23,7 +23,7 @@ class BulkStoreBasketItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'items' => ['required', 'array', new MaxQuantityOfProductInBasketIsNotExceedInArrayOfItemsRule()],
+            'items' => ['required', 'array', new MaxQuantityOfProductsInBasketIsNotExceedRule()],
             'items.*.product_id' => 'required|integer|exists:products,id',
             'items.*.product_quantity' => 'required|integer|min:1',
         ];

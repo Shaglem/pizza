@@ -12,6 +12,7 @@ use App\Http\Requests\BasketItem\IndexBasketItemRequest;
 use App\Http\Requests\BasketItem\StoreBasketItemRequest;
 use App\Http\Resources\BasketItemResource;
 use App\Models\BasketItem;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
@@ -27,7 +28,7 @@ class BasketItemController extends Controller
         return new BasketItemResource($action->handle($request));
     }
 
-    public function bulkStore(BulkStoreBasketItemRequest $request, BulkStoreBasketItemAction $action)
+    public function bulkStore(BulkStoreBasketItemRequest $request, BulkStoreBasketItemAction $action): JsonResponse
     {
         return $action->handle($request);
     }
