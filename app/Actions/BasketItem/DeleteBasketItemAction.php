@@ -12,6 +12,10 @@ class DeleteBasketItemAction
     {
         Gate::authorize('delete', $basketItem);
 
-        $basketItem->delete();
+        if ($basketItem->product_quantity > 1) {
+            $basketItem->decrement('product_quantity', 1);
+        } else {
+            $basketItem->delete();
+        }
     }
 }
