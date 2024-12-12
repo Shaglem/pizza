@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Actions\BasketItem\BulkStoreBasketItemAction;
 use App\Actions\BasketItem\DeleteBasketItemAction;
 use App\Actions\BasketItem\IndexBasketItemAction;
 use App\Actions\BasketItem\StoreBasketItemAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BasketItem\BulkStoreBasketItemRequest;
 use App\Http\Requests\BasketItem\IndexBasketItemRequest;
 use App\Http\Requests\BasketItem\StoreBasketItemRequest;
 use App\Http\Resources\BasketItemResource;
@@ -23,6 +25,11 @@ class BasketItemController extends Controller
     public function store(StoreBasketItemRequest $request, StoreBasketItemAction $action): BasketItemResource
     {
         return new BasketItemResource($action->handle($request));
+    }
+
+    public function bulkStore(BulkStoreBasketItemRequest $request, BulkStoreBasketItemAction $action)
+    {
+        return $action->handle($request);
     }
 
     public function destroy(DeleteBasketItemAction $action, BasketItem $basketItem): Response

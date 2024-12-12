@@ -21,6 +21,7 @@ Route::prefix('v1')->group(function () {
 
     //BasketItem
     Route::apiResource('/basket-items', BasketItemController::class)->only(['index', 'store', 'destroy'])->middleware('auth:sanctum');
+    Route::post('/basket-items/bulk-store', [BasketItemController::class, 'bulkStore'])->middleware('auth:sanctum');
 
     //Product
     Route::apiResource('/products', ProductController::class)->only(['index', 'show']);
@@ -28,7 +29,7 @@ Route::prefix('v1')->group(function () {
     //Admin
     Route::apiResource('/admin/products', AdminProductController::class)->middleware('admin');
     Route::apiResource('/admin/orders', AdminOrderController::class)->only(['index'])->middleware('admin');
-    Route::patch('admin/order-change-status/{order}', [AdminOrderController::class, 'changeStatus']);
+    Route::patch('admin/order-change-status/{order}', [AdminOrderController::class, 'changeStatus'])->middleware('admin');
 });
 
 
