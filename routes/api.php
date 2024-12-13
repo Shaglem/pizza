@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\AdminOrderController;
 use App\Http\Controllers\Api\V1\AdminProductController;
 use App\Http\Controllers\Api\V1\BasketItemController;
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
@@ -25,6 +26,9 @@ Route::prefix('v1')->group(function () {
 
     //Product
     Route::apiResource('/products', ProductController::class)->only(['index', 'show']);
+
+    //Order
+    Route::apiResource('/orders', OrderController::class)->only(['index', 'show', 'store'])->middleware('auth:sanctum');
 
     //Admin
     Route::apiResource('/admin/products', AdminProductController::class)->middleware('admin');

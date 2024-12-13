@@ -4,7 +4,7 @@ namespace App\Http\Requests\Order;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminIndexOrderRequest extends FormRequest
+class StoreOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,9 @@ class AdminIndexOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first' => 'nullable|int|max:100',
-            'page' => 'nullable|string',
+            'customer_phone' => 'required|string|regex:/^\+?[0-9]{10,15}$/',
+            'delivery_time' => 'required|date_format:Y-m-d H:i:s',
+            'delivery_address' => 'required|string|max:255',
         ];
     }
 }

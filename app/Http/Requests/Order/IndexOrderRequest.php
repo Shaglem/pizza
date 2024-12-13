@@ -4,7 +4,7 @@ namespace App\Http\Requests\Order;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminIndexOrderRequest extends FormRequest
+class IndexOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
