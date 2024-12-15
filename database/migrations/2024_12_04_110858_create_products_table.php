@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->decimal('price', 8, 2);
-            $table->integer('weight');
+            $table->unsignedInteger('weight');
             $table->string('image_link')->nullable();
             $table->foreignId('category_id')->constrained();
             $table->softDeletes();
