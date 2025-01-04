@@ -23,7 +23,7 @@ class StoreBasketItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => ['required', 'integer', 'exists:products,id', new BasketItemProductMaxQuantityDoesNotExceedRule()],
+            'product_id' => ['bail', 'required', 'integer', 'exists:products,id', new BasketItemProductMaxQuantityDoesNotExceedRule()],
         ];
     }
 }
