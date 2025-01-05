@@ -28,7 +28,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('/products', ProductController::class)->only(['index', 'show']);
 
     //Order
-    Route::apiResource('/orders', OrderController::class)->only(['index', 'show', 'store'])->middleware('auth:sanctum');
+    Route::apiResource('/orders', OrderController::class)->only(['index', 'store'])->middleware('auth:sanctum');
 
     //Admin
     Route::apiResource('/admin/products', AdminProductController::class)->middleware('admin');
